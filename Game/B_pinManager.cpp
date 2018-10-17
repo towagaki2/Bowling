@@ -30,29 +30,16 @@ void B_pinManager::Update()
 		m_number[i]->Update();
 	}
 
-	if (m_ball->Thorw == 2)
+	if (m_ball->GetThorw() == 2)
 	{
 		for (int i = 0; i < 10; i++) {
 
-			if (m_number[i]->fly==1)
+			if (m_number[i]->GetFly() ==1)
 			{
 				score++;
 			}
 		}
-		static char errorMessage[10 * 1024];
-		sprintf(errorMessage, "SCORE :10,%d\nやりまっか？",score);
-		if (MessageBox(NULL, errorMessage, "スコア", MB_YESNO)) {
-			m_ball->Thorw = 0;
-			score = 0;
-			for (int i = 0; i < 10; i++) {
-				m_number[i]->fly = 0;
-			}
-		}
-		else
-		{
-			int j = 0;
-		}
-
+		
 	}
 
 	

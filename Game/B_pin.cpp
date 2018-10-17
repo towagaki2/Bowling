@@ -29,7 +29,7 @@ void B_pin::Move()
 		m_moveSpeed.z -= 1000.0f;
 		fly += 1;
 	}
-	if (m_pos.z <= -20000.0f&&m_ball->Thorw==2)
+	if (m_pos.z <= -5000.0f&&m_ball->GetThorw() ==2)
 	{
 		m_pos = m_position;
 		m_moveSpeed.z = 0.0f;

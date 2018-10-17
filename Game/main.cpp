@@ -36,6 +36,9 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 	//バックグランド
 	BackGround background;
 
+	int GameNumber = 0;
+	int Start = 0;
+
 	//ゲームループ。
 	while (DispatchWindowMessage() == true)
 	{
@@ -68,5 +71,48 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 		g_camera3D.Update();
 		//描画終了。
 		g_graphicsEngine->EndRender();
+		//スタート画面。
+		if (Start == 0)
+		{
+			static char errorMessage[10 * 1024];
+			sprintf(errorMessage, "ボーリング始めますか？。");
+			if (MessageBox(NULL, errorMessage, "スタート！！", MB_YESNO) != IDNO) {
+
+				Start++;
+			}
+			else
+			{
+				break;
+			}
+		}
+		//スコアと終わる判定。
+		if (b_ball.GetThorw() == 2) {
+			if (GameNumber >= 1)
+			{
+			
+				static char errorMessage[10 * 1024];
+				sprintf(errorMessage, "TOTAL SCORE :%d\nやりまっか？", b_pin.GetScore());
+				if (MessageBox(NULL, errorMessage, "スコア", MB_YESNO) == IDNO) {
+					Start=0;
+				}	
+				b_ball.SetThorw(0);
+				b_pin.SetScore(0);
+				for (int i = 0; i < 10; i++) {
+					b_pin.SetNumber(i);
+				}
+				GameNumber = 0;
+			}
+			else
+			{
+				static char errorMessage[10 * 1024];
+				sprintf(errorMessage, "%dフレーム目の SCORE :%dです。",++GameNumber, b_pin.GetScore());
+				MessageBox(NULL, errorMessage, "スコア", MB_OK);
+				b_ball.SetThorw(0);
+				for (int i = 0; i < 10; i++) {
+					b_pin.SetNumber(i);
+				}
+				
+			}
+		}
 	}
 }

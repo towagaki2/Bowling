@@ -11,6 +11,15 @@ public:
 	void Update();
 	void Draw();
 
+	int GetFly()
+	{
+		return fly;
+	}
+
+	void SetFly(int Main)
+	{
+		fly = Main;
+	}
 	void Setball(B_ball* b_ball)
 	{
 		m_ball = b_ball;
@@ -21,15 +30,13 @@ public:
 		m_position.z -= 500.0f;
 		m_pos = m_position;
 	}
- 
-	int fly = 0;										//当たったフラグ。
 
 private:
 	void Move();		//移動処理。
 	void Turn();		//回転処理　
-
+	int fly = 0;										//当たったフラグ。
 	B_ball* m_ball= nullptr;							//ボール情報。
-
+	
 	CVector3 m_pos = CVector3::Zero();
 	SkinModel m_model;									//スキンモデル。
 	CVector3 m_position = CVector3::Zero();				//ピン座標。

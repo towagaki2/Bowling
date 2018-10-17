@@ -14,16 +14,28 @@ public:
 	{
 		m_ball = b_ball;
 	}
-
-	int score=0;
+	int GetScore()
+	{
+		return score;
+	}
+	void SetScore(int Main)
+	{
+		score = Main;
+	}
+	void SetNumber(int Nom)
+	{
+		m_number[Nom]->SetFly(0);
+	}
 
 	void Update();
 	
 	void Draw();
 private:	
+	int score=0;
 	B_pin *m_pin = nullptr;							//ピン情報。
 	B_ball* m_ball;									//ボール情報。
 	B_pin* m_number[10];							//ピンの本数。
+
 	CVector3 hoge[10] = { 
 		{0.0f,0.0f,0.0f}
 	,{5.0f,0.0f,10.0f},

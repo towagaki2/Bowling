@@ -19,17 +19,26 @@ public:
 	{
 		return m_moveSpeed;
 	}
+	int GetThorw()
+	{
+		return Thorw;
+	}
+	void SetThorw(int Main)
+	{
+		Thorw = Main;
+	}
 	void Setplayer(Player* player)
 	{
 		m_player = player;
 	}
 
-	int Thorw = 0;
+	
 private:
 	void Power();		//パワー処理。
 	void Move();		//移動処理。
 	void Turn();		//回転処理。　
 
+	int Thorw = 0;
 
 	Player* m_player = nullptr;							//プレイヤー情報。
 
